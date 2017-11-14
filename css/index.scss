@@ -1,0 +1,163 @@
+$width:600px;
+//$bg:../img/bg.jpg;
+@mixin auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin  center{
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  margin: auto;
+}
+@mixin centerS($w,$h){
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-left: -$h/2;
+  margin-top: -$w/2;
+}
+
+
+
+@mixin circle{
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+@mixin borderR($r){
+  -webkit-border-radius: $r;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+html,body{
+  width:100%;
+  height: 100%;
+}
+body{
+  overflow:hidden;
+  background: #000;
+
+}
+.qipan{
+  width: $width;
+  height: $width;
+  @include center;
+  //background:url('../img/bg.jpg') no-repeat cover/center;
+  background: peru;
+  overflow: hidden;
+}
+.qizi{
+  width:$width/15 - 10px;
+  height:$width/15 - 10px;
+  float: left;
+  margin: 5px;
+  @include circle;
+  position: relative;
+  z-index: 999;
+}
+.qizi.hei{
+  background: #000;
+}
+.qizi.bai{
+  background: #fff;
+}
+.hang{
+  width: $width - $width / 15;
+  height: 1px;
+  background: #000;
+  position: absolute;
+  left:$width / 15 / 2;
+
+}
+@for $i from 0 through 14{
+  div:nth-of-type(#{$i+1}) {
+    top: $width / 30 + $i * $width / 15;
+    animation: hangd ease $i*0.1s forwards;
+  }
+}
+.shu{
+  width: 1px;
+  height:$width - $width / 15;
+  background:#000;
+  position: absolute;
+  top:$width / 15 / 2;
+
+
+}
+@for $i from 0 through 14{
+  span:nth-of-type(#{$i+1}) {
+    left: $width / 30 + $i * $width / 15;
+    animation: shud ease $i*0.1s forwards;
+  }
+}
+i{
+  width: $width / 60 / 1.5;
+  height: $width / 60 / 1.5;
+  background: #000;
+  position: absolute;
+  @include circle;
+  transform: translate3d(-50%,-50%,0);
+  animation: diaoluo 0.1s ease;
+  @for $i from 1 through 5{
+    &:nth-of-type(#{$i}){
+      animation-delay:$i*0.2s;
+    }
+  }
+  &:nth-of-type(1){
+    left:3.5 * $width / 15;
+    top:3.5 * $width / 15;
+    //transform: translate3d(-5px,0,0);
+  }
+  &:nth-of-type(2){
+    left:11.5 * $width / 15;
+    top:3.5 * $width / 15;
+    //transform: translate3d(-5px,0,0);
+  }
+  &:nth-of-type(3){
+    left:7.5 * $width / 15;
+    top:7.5 * $width / 15;
+    //transform: translate3d(-5px,0,0);
+  }
+  &:nth-of-type(4){
+    left:3.5 * $width / 15;
+    top:11.5 * $width / 15;
+    //transform: translate3d(-5px,0,0);
+  }
+  &:nth-of-type(5){
+    left:11.5 * $width / 15;
+    top:11.5 * $width / 15;
+    //transform: translate3d(-5px,0,0);
+  }
+}
+@keyframes diaoluo {
+  0%{
+      transform:translate3d(0,-800px,0);
+  }
+  100%{
+    transform:translate3d(50%,50%,0);
+  }
+}
+@keyframes hangd {
+  0%{
+    transform:translate3d(-1500px,0,0);
+  }
+  100%{
+    transform:translate3d(0,0,0);
+  }
+}
+@keyframes shud {
+  0%{
+    transform:translate3d(0,-1500px,0);
+  }
+  100%{
+    transform:translate3d(0,0,0);
+  }
+}
